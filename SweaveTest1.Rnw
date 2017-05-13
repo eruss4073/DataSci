@@ -1,0 +1,62 @@
+\documentclass[11pt]{article}
+\setlength{\oddsidemargin}{10mm}
+\setlength{\topmargin}{-12mm}
+\setlength{\textheight}{205mm}
+\setlength{\textwidth}{150mm}
+\setlength{\parskip}{1.5ex}
+\setlength{\parindent}{1.75em}
+\title{\bf{Sweave Example 1}}
+\author{\emph{Edward Russell}}
+\date{}
+
+\begin{document}
+\SweaveOpts{concordance=TRUE}
+
+\maketitle
+\begin{center}
+Here's some R code ``inserted'' into a \LaTeX{} document:
+\end{center}
+
+<<eval=true,echo=true>>=
+set.seed(2)
+rnorm(10)
+@
+\begin{center}
+<<fig=true,echo=false>>=
+hist(rnorm(100000),main="Example Histogram of Normal Distribution")
+@
+\end{center}
+
+And then we type text to make this interesting, incl' a carriage return\\ That, however, might be difficult.
+We will continue to try to do so, so as to be able to gain some insight into how \emph{Sweave}
+interprets what we write in our \texttt{.Rnw} file. Note: we used texttt to highlight the .rnw bit.
+
+\begin{verbatim}
+What is it that this (verbatim) is supposed to do? I "wonder" vs ``wonder''...
+\end{verbatim}
+
+\texttt{What is this (typewriter) supposed to do? I "wonder" vs ``wonder''... It's mostly for in-line font based empahsis, it appears}
+
+\begin{enumerate}
+  \item item one
+  \item item two
+  \item item three
+\end{enumerate}
+
+
+
+\section*{abc - section heading}
+and then I type some text
+
+\subsection*{def - subsection heading} and the there's more text\\
+\begin{verbatim}   Verbatim* note the notation for a quote is not interpreted as such... ``quote'' \end{verbatim}
+
+\begin{quote}
+BLAH BLAH BLAH BLAH BLAH BLAH BLAH BLAH BLAH BLAAAAA BLAAAAAAA BLAAAAAA BLAAAAA. All models are wrong, some are useful. -George Box
+\end{quote}
+
+\texttt{Why does the typewriter default to beginning with an indent? It doesn't; we skipped a line before this code..and we will wrap up the text portion with blah blah blah blah.} And we will wrap up the text portion with regular old text, no special formatting specified. And we will wrap up the text portion with regular old text, no special formatting specified. \\And we will wrap up the text portion with regular old text, no special formatting specified.
+
+Now, we skipped a line in our \emph{Sweave} script.. and we will wrap up the text portion with regular old text, no special formatting specified.
+
+\end{document}

@@ -1,62 +1,77 @@
-\documentclass[11pt]{article}
+\documentclass[11pt]{article}\usepackage{enumerate}
 \setlength{\oddsidemargin}{10mm}
 \setlength{\topmargin}{-12mm}
 \setlength{\textheight}{205mm}
 \setlength{\textwidth}{150mm}
 \setlength{\parskip}{1.5ex}
 \setlength{\parindent}{1.75em}
-\title{\bf{Sweave Example 1}}
+\title{\bf{A Brief Sweave Example}}
 \author{\emph{Edward Russell}}
 \date{}
+\usepackage{indentfirst}
 
 \begin{document}
 \SweaveOpts{concordance=TRUE}
-
 \maketitle
-\begin{center}
-Here's some R code ``inserted'' into a \LaTeX{} document:
-\end{center}
-
+Here's some left-aligned R code ``inserted'' into a \LaTeX{} document and the plot that can be generated silently using the data generated from the simple custom function:
+\setkeys{Gin}{width=0.75\textwidth}
 <<eval=true,echo=true>>=
-set.seed(2)
-rnorm(10)
+randoW<- function(Ti,X,A){
+  # create vectors to fill and assign ser[1]
+  ser<<-vector(length = Ti, mode = "numeric")
+  ser[1]<<-X
+  err<-vector(length = Ti, mode = "numeric")
+  # generate errors and super-assign outputs to ser
+  for(i in 1:Ti) {
+   ifelse(rbinom(1,1,0.5) == 1, err[i]<- 1,
+          err[i]<- -1)
+   ser[i+1]<<- ser[i]+A*err[i]
+  }
+  Ti<<-Ti
+}
+# call function with stated variable values
+randoW(Ti=60000,X=1,A=0.1)
 @
+\begin{center}
+<<fig=TRUE, echo=FALSE>>=
+#plot the time series
+plot(0:Ti,ser,
+     main="Random Walk Time Series",
+     xlab="Time Steps",
+     ylab="Value of X",
+     type="l")
+@
+\end{center}
+Now, let's look at what a simple ordered list looks like. Oh, how I love an ordered list! Also, it was formatted to have Roman numerals and was centered by adding \textbackslash usepackage\{enumerate\} to the document preamble and then creating a \{minipage\}\{0.4\textbackslash textwidth\} block inside a center block with the list items inside the \{enumerate\}[I.] block.
+\begin{center}
+  \begin{minipage}{0.4\textwidth}
+  \begin{enumerate}[I.]
+    \item The first item on the list..
+    \item the second item on the list..
+    \item the third item on the list..
+    \item the fourth and final item on the list.
+  \end{enumerate}
+  \end{minipage}
+\end{center}
+For fun, let us now examine a plot of a random Poisson process with \(\lambda = 3\). See below.
 \begin{center}
 <<fig=true,echo=false>>=
-hist(rnorm(100000),main="Example Histogram of Normal Distribution")
+hist(rpois(10000,3),main="Example Histogram of Poisson Distribution", breaks = 9,xlab="number of occurances per time period or per area")
 @
 \end{center}
-
-And then we type text to make this interesting, incl' a carriage return\\ That, however, might be difficult.
-We will continue to try to do so, so as to be able to gain some insight into how \emph{Sweave}
-interprets what we write in our \texttt{.Rnw} file. Note: we used texttt to highlight the .rnw bit.
-
-\begin{verbatim}
-What is it that this (verbatim) is supposed to do? I "wonder" vs ``wonder''...
-\end{verbatim}
-
-\texttt{What is this (typewriter) supposed to do? I "wonder" vs ``wonder''... It's mostly for in-line font based empahsis, it appears}
-
-\begin{enumerate}
-  \item item one
-  \item item two
-  \item item three
-\end{enumerate}
-
-
-
 \section*{abc - section heading}
-and then I type some text
+There is some text under this section heading. Note that we have indented the first paragraph. This was accomplished by adding \textbackslash usepackage\{indentfirst\} to the document preamble.
 
-\subsection*{def - subsection heading} and the there's more text\\
-\begin{verbatim}   Verbatim* note the notation for a quote is not interpreted as such... ``quote'' \end{verbatim}
+And some more text in a second paragraph.
+
+\subsection*{arbitrary subsection heading}Then there is more text! A small note - I included an asterisk in the subsection label which allows for unnumbered subsections. The next bit of text will be in the form of a quote, which is a specific type of format in a \emph{Sweave} \LaTeX{} document.
 
 \begin{quote}
-BLAH BLAH BLAH BLAH BLAH BLAH BLAH BLAH BLAH BLAAAAA BLAAAAAAA BLAAAAAA BLAAAAA. All models are wrong, some are useful. -George Box
+All models are wrong, some are useful. -George Box
 \end{quote}
 
-\texttt{Why does the typewriter default to beginning with an indent? It doesn't; we skipped a line before this code..and we will wrap up the text portion with blah blah blah blah.} And we will wrap up the text portion with regular old text, no special formatting specified. And we will wrap up the text portion with regular old text, no special formatting specified. \\And we will wrap up the text portion with regular old text, no special formatting specified.
+\texttt{Why does the typewriter default to beginning with an indent? It doesn't; we skipped a line before this code.. and we will wrap up the text portion with blah blah blah blah.} And we will wrap up the text portion with regular old text, no special formatting specified. Note the carridge return that follows.\\After such a carridge return there is no indentation.
 
-Now, we skipped a line in our \emph{Sweave} script.. and we will wrap up the text portion with regular old text, no special formatting specified.
+Now, we skipped a line in our Sweave \texttt{.Rnw} file... and we will wrap up the text portion with regular old text, no special formatting specified.
 
 \end{document}

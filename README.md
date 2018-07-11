@@ -3,7 +3,7 @@ This is a repo for example analyses and other work related to data science in ge
 
 <br>
 
-## Course Certificates (in addition to BS, MS, and PHd coursework)
+## Course Certificates (in addition to BS, MS, and PhD coursework)
 [Machine Learning](/ML_cert_EMR.pdf) - Johns Hopkins
 
 [Bayesian Statistics: From Concept to Data Analysis](https://github.com/eruss4073/DataSci/blob/master/Bayes_cert_EMR.pdf) - UC Santa Cruz

@@ -1,5 +1,5 @@
 # DataSci
-This is a repo for example analyses and other work related to data science in general. It serves as a portfolio.If you'd like you may view course certificates I've earned, courses I've audited, and example analyses and data products:
+This is a repo for example analyses and other work related to data science in general. It serves as a portfolio. If you'd like, you may view course certificates I've earned, courses I've audited, notable courses I've taken, and example analyses and data products:
 
 ## Course Certificates (in addition to BS, MS, and PHd coursework)
 [Machine Learning - Johns Hopkins](/ML_cert_EMR.pdf)
